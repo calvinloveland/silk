@@ -1,0 +1,15 @@
+Hello from Indexnew! 
+this is new content
+<%- contentFor('scriptsAfter') %>
+<script>
+console.log("Hello from script after!");
+</script>
+<script src="./public/hello.js"></script>
+<script>console.log("hello form layout script");</script>
+<%- contentFor('cssAfter')%>
+<style>
+body {
+    width: 600px;
+    margin: 0 auto;
+}
+</style>
