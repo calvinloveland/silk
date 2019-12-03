@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     res.render("index", {
         // This gets rendered as the browsers title
         // it is passed into the ejs page as the variable 'title'
-        title: "Home page"
+        title: "Silk"
     })
 });
 module.exports = router;

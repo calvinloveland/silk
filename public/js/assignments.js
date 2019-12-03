@@ -1,51 +1,4 @@
-let assignments = {
-  products: [
-    {
-      subject: 'Math',
-      name: 'Assignment 1',
-      description: 'something',
-      dueDate: 'today',
-      id: 1
-    },
-    {
-      subject: 'Math',
-      name: 'Assignment 2',
-      description: 'something else',
-      dueDate: '',
-      id: 2
-    },
-        {
-      subject: 'Math',
-      name: 'Assignment 3',
-      description: '',
-      dueDate: '',
-      id: 3
-    },
-        {
-      subject: 'English',
-      name: 'Assignment 1',
-      description: '',
-      dueDate: '',
-      id: 4
-    },
-        {
-      subject: 'English',
-      name: 'Assignment 2',
-      description: '',
-      dueDate: '',
-      id: 5
-    },
-    {
-      subject: 'Science',
-      name: 'Assignment 6',
-      description: '',
-      dueDate: '',
-      id: 6
-    },
-  ],
-  count: 8,
-  pageNum: 2
-};
+let assignments = {};
 
 import { React, ReactDOM } from 'https://unpkg.com/es-react@16.8.60/index.js';
 import htm from 'https://unpkg.com/htm@2.2.1/dist/htm.mjs';
@@ -80,7 +33,7 @@ function Assignments (props) {
     })}`;
 };
 
-let filteredAssignments = assignments.products.slice();
+let filteredAssignments = {};
 function ClassDropdown () {
   return html`
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -165,4 +118,14 @@ function turnIn () {
   console.log("turn in assignment ")
 }
 
-render();
+fetch('/api/products').then(response => {
+  if (response.ok) {
+      return response.json();
+  } else {
+      throw Error("Something went wrong with that request:", response.statusText);
+  }
+}).then(function (data) {
+  assignments = data.products;
+  filterAssignments = assignments.slice();
+  render();
+});
