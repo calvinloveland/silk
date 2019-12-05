@@ -1,4 +1,4 @@
-let assignments = {};
+let assignments;
 
 import { React, ReactDOM } from 'https://unpkg.com/es-react@16.8.60/index.js';
 import htm from 'https://unpkg.com/htm@2.2.1/dist/htm.mjs';
@@ -15,6 +15,7 @@ function Assignment (props) {
           <div className="card h-100">
             <div className="card-body">
               <h5 className="card-title">${assignment.name}</h5>
+              <p className="card-text">${assignment.subject}</p>
               <p className="card-text">${assignment.description}</p>
               <p className="card-text">Due: ${assignment.dueDate}</p>
               <div
@@ -33,7 +34,7 @@ function Assignments (props) {
     })}`;
 };
 
-let filteredAssignments = {};
+let filteredAssignments;
 function ClassDropdown () {
   return html`
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -125,7 +126,7 @@ fetch('/api/products').then(response => {
       throw Error("Something went wrong with that request:", response.statusText);
   }
 }).then(function (data) {
-  assignments = data.products;
-  filterAssignments = assignments.slice();
+  assignments = data;
+  filteredAssignments = assignments.products.slice();
   render();
 });
