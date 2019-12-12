@@ -78,4 +78,16 @@ router.get("/products", async (req, res) => {
     pageNum: Math.ceil(findAllCount / count)
   });
 });
+
+router.get("/addAssignment", async (req, res) => {
+	console.log(req.query);
+
+const result =	await sqlFetch`
+INSERT INTO products 
+VALUES (1, ${req.query.date},${req.query.description},${req.query.name},${req.query.subject});
+`;
+res.json({
+done:'true'
+});
+});
 module.exports = router;
