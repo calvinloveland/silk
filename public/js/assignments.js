@@ -11,7 +11,7 @@ function SetTitle(){
 function Assignment (props) {
   const assignment = props.assignment;
   return html`
-        <div key=${assignment.id} className="col-lg-4 col-md-6 col-mb-4">
+        <div key=${assignment.id} className="col-lg-6 col-md-6 col-mb-4 p-1">
           <div className="card h-100">
             <div className="card-body">
               <h5 className="card-title">${assignment.name}</h5>
